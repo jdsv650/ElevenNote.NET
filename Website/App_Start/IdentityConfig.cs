@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Website.Models;
+using System.Configuration;
 
 namespace Website
 {
@@ -53,11 +54,11 @@ namespace Website
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 4,
-                RequireNonLetterOrDigit = false,
-                RequireDigit = false,
-                RequireLowercase = false,
-                RequireUppercase = false,
+                RequiredLength = Int32.Parse(ConfigurationManager.AppSettings["AuthConfig_RequireLength"]),
+                RequireNonLetterOrDigit = Boolean.Parse(ConfigurationManager.AppSettings["AuthConfig_RequireNonLetterOrDigit"]),
+                RequireDigit = Boolean.Parse(ConfigurationManager.AppSettings["AuthConfig_RequireDigit"]),
+                RequireLowercase = Boolean.Parse(ConfigurationManager.AppSettings["AuthConfig_RequireLowercase"]),
+                RequireUppercase = Boolean.Parse(ConfigurationManager.AppSettings["AuthConfig_RequireUppercase"]),
             };
 
             // Configure user lockout defaults

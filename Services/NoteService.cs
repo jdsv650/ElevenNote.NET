@@ -27,7 +27,6 @@ namespace Services
                             Id = r.NoteId,
                             Title = r.Title
                         }).OrderBy(o => o.DateModified).ToList();
-
             }
         }
 
@@ -37,7 +36,7 @@ namespace Services
         /// <param name="id"></param>
         /// <param name="requestingUserId"></param>
         /// <returns></returns>
-        public NoteListViewModel GetById(int id, String requestingUserId)
+        public NoteDetailViewModel GetById(int id, String requestingUserId)
         {
             using (var context = Dependencies.DataContext)
             {
@@ -45,10 +44,11 @@ namespace Services
                     return (from r in context.Notes
                             where r.ApplicationUserId == requestingUserId
                             && r.NoteId == id
-                            select new NoteListViewModel()
+                            select new NoteDetailViewModel
                             {
                                 DateCreated = r.DateCreated,
                                 DateModified = r.DateModified,
+                                Content = r.Contents,
                                 Id = r.NoteId,
                                 Title = r.Title
                             }).OrderBy(o => o.DateModified).SingleOrDefault();
@@ -155,7 +155,6 @@ namespace Services
                 // this is better *
                 return context.Notes.Any(a => a.NoteId == id && a.ApplicationUserId == userId);
             }
-
         }
 
     }

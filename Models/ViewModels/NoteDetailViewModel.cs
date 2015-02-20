@@ -12,9 +12,13 @@ namespace Models.ViewModels
         [Display(Name = "ID")]
         public int Id { get; set; }
 
+        [Required]
+        [StringLength(100)]
         [Display(Name = "Title")]
         public string Title { get; set; }
 
+        [Required]
+        [StringLength(Int32.MaxValue)]
         [Display(Name = "Content")]
         public string Content { get; set; }
 

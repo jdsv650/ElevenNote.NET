@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,5 +27,24 @@ namespace Website.Controllers
 
             return View();
         }
+
+
+        public bool AddUsersToRoles()
+        {
+            IdentityDbContext identityContext = new IdentityDbContext();
+
+
+            var user = identityContext.Users.Where(u => u.UserName.Equals("jdsv650.utest1@gmail.com", StringComparison.CurrentCultureIgnoreCase)).SingleOrDefault();
+            var account = new AccountController();
+
+            account.UserManager.AddToRoleAsync(user.Id, "Admin");
+
+
+            return true;
+        }
+
+
+
+
     }
 }

@@ -1,0 +1,28 @@
+﻿@corporateGreen: #0f0;
+
+
+body {
+    background:@corporateGreen;
+}
+
+.btn {
+    border-radius:5px;
+    background:@corporateGreen;
+    color:#fff;
+    text-align:center;
+    display:inline-block;
+}
+
+.bigBtn {
+    .btn;
+    border-radius:8px;
+}
+
+.border-radius(@x) {
+    border-radius:@x;
+}
+
+.smallBtn {
+    .border-radius(4px);
+}
+
